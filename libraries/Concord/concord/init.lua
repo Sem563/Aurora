@@ -38,5 +38,6 @@ Concord.components = require(PATH..".components")
 Concord.system     = require(PATH..".system")
 Concord.world      = require(PATH..".world")
 Concord.utils      = require(PATH..".utils")
+Concord.type       = require(PATH..".type")
 
 return Concord
