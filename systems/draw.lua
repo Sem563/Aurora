@@ -29,12 +29,11 @@ function DrawSystem:draw()
 		love.graphics.draw(
 			sprites.sprite_sheet,
 			sprite,
-			e.position.vector.x - (sprites.sprite_sheet:getHeight() / 2),
+			e.position.vector.x - ((e.facing_right.value and sprites.sprite_sheet:getWidth() or 0) / 2),
 			e.position.vector.y - (sprites.sprite_sheet:getHeight() / 2),
 			0,
-			e.facing_right.value and -sprite_scale or sprite_scale,
-			1,
-			-1
+			e.facing_right.value and sprite_scale or -sprite_scale,
+			sprite_scale
 		)
 	end
 end
