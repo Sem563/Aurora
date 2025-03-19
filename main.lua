@@ -25,7 +25,7 @@ function love.load()
 		width = 32,
 		height = 32,
 		animation_length = 1,
-		animation_types = {2, 3} --2 sprites row 1, 3 sprites row 2
+		animation_types = { 2, 3 }, --2 sprites row 1, 3 sprites row 2
 	} --XML files?
 
 	local player = spawn_entity(world, player_sprite_info, 0, 0, 2)
@@ -44,4 +44,3 @@ end
 function love.draw()
 	world:emit("draw")
 end
-

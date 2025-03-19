@@ -1,7 +1,16 @@
 local Concord = require("libraries.Concord.concord")
 
 local DrawSystem = Concord.system({
-	pool = { "position", "drawable", "sprites", "animation_type", "animation_length", "animation_timer", "sprite_scale" },
+	pool = {
+		"position",
+		"drawable",
+		"sprites",
+		"animation_type",
+		"animation_length",
+		"animation_timer",
+		"sprite_scale",
+		"facing_right",
+	},
 })
 
 function DrawSystem:draw()
@@ -23,10 +32,11 @@ function DrawSystem:draw()
 			e.position.vector.x - (sprites.sprite_sheet:getHeight() / 2),
 			e.position.vector.y - (sprites.sprite_sheet:getHeight() / 2),
 			0,
-			sprite_scale
+			e.facing_right.value and -sprite_scale or sprite_scale,
+			1,
+			-1
 		)
 	end
 end
 
 return DrawSystem
-
