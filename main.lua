@@ -28,7 +28,7 @@ function love.load()
 		animation_types = { 2, 3 }, --2 sprites row 1, 3 sprites row 2
 	} --XML files?
 
-	local player = spawn_entity(world, player_sprite_info, 0, 0, 2)
+	local player = spawn_entity(world, player_sprite_info, 0, 0, 5)
 		:give("player")
 		:give("player_speed", 200)
 		:give("moveable")

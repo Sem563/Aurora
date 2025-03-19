@@ -26,14 +26,18 @@ function DrawSystem:draw()
 		local sprite_select = math.floor(animation_timer / animation_length * #animation_sprites) + 1
 		local sprite = sprites.quads[animation_type][sprite_select]
 
+		love.graphics.circle("line", e.position.vector.x, e.position.vector.y, 64)
+
 		love.graphics.draw(
 			sprites.sprite_sheet,
 			sprite,
-			e.position.vector.x - ((e.facing_right.value and sprites.sprite_sheet:getWidth() or 0) / 2),
-			e.position.vector.y - (sprites.sprite_sheet:getHeight() / 2),
+			e.position.vector.x,
+			e.position.vector.y,
 			0,
 			e.facing_right.value and sprite_scale or -sprite_scale,
-			sprite_scale
+			sprite_scale,
+			sprites.quad_size / 2,
+			sprites.quad_size / 2
 		)
 	end
 end

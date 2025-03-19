@@ -29,10 +29,13 @@ function PlayerMovementSystem:update(dt)
 			e.action.value = "idle"
 			e.animation_type.value = 1
 		end
-		e.facing_right.value = (direction.x > 0)
+
+		if direction.length > 0 then
+			e.facing_right.value = (direction.x > 0)
+		end
+
 		e.direction.vector = direction.normalized * e.player_speed.value
 	end
 end
 
 return PlayerMovementSystem
-
