@@ -1,33 +1,12 @@
 local Vector = require("libraries.brinevector.brinevector")
 local Camera = require("libraries.hump.camera")
 local Concord = require("libraries.Concord.concord")
+local spawn_entity = require("misc.spawn")
 
 -- Create the World
 local world = Concord.world()
 
-local function newAnimation(image, width, height, duration)
-	local animation = {}
-	animation.spriteSheet = image
-	animation.quads = {}
-
-	for y = 0, image:getHeight() - height, height do
-		for x = 0, image:getWidth() - width, width do
-			table.insert(animation.quads, love.graphics.newQuad(x, y, width, height, image:getDimensions()))
-		end
-	end
-
-	animation.duration = duration or 1
-	animation.currentTime = 0
-
-	return animation
-end
-
 function love.load()
-	-- pls fix abstactions :D
-	local image = love.graphics.newImage("assets/playersheetaurora.png")
-	image:setFilter("linear", "nearest")
-	local animation = newAnimation(image, 32, 32, 1)
-
 	-- Register components
 	Concord.utils.loadNamespace("components")
 
@@ -41,15 +20,20 @@ function love.load()
 	end
 
 	--Create player entity
-	Concord.entity(world)
+	local player_sprite_info = {
+		image_path = "assets/playersheetaurora.png",
+		width = 32,
+		height = 32,
+		animation_length = 1,
+		animation_types = {2, 3} --2 sprites row 1, 3 sprites row 2
+	} --XML files?
+
+	local player = spawn_entity(world, player_sprite_info, 0, 0, 2)
 		:give("player")
 		:give("player_speed", 200)
-		:give("position")
-		:give("velocity")
-		:give("drawable")
 		:give("moveable")
 		:give("direction")
-		:give("animation", animation)
+		:give("velocity")
 end
 
 -- Emit the events

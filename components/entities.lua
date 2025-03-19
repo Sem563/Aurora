@@ -11,3 +11,6 @@ end)
 Concord.component("direction", function(c, direction)
     c.vector = direction or Vector(0, 0)
 end)
+Concord.component("action", function(c, action)
+	c.value = "idle"
+end)
