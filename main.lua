@@ -28,12 +28,23 @@ function love.load()
 		animation_types = { 2, 3 }, --2 sprites row 1, 3 sprites row 2
 	} --XML files?
 
-	local player = spawn_entity(world, player_sprite_info, 0, 0, 5)
+	local player_hand_sprite_info = {
+		image_path = "assets/aurorahand.png",
+		width = 7,
+		height = 3,
+		animation_length = 1,
+		animation_types = { 1 }, --2 sprites row 1, 3 sprites row 2
+	}
+
+	local player = spawn_entity(world, player_sprite_info, 0, 0, 2)
 		:give("player")
 		:give("player_speed", 200)
 		:give("moveable")
 		:give("direction")
 		:give("velocity")
+		:give("aiming")
+
+	local player_hand = spawn_entity(world, player_hand_sprite_info, 0, 0, 2):give("player_hand"):give("direction")
 end
 
 -- Emit the events

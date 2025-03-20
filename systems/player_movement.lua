@@ -2,7 +2,7 @@ local Concord = require("libraries.Concord.concord")
 local Vector = require("libraries.brinevector.brinevector")
 
 local PlayerMovementSystem = Concord.system({
-	pool = { "facing_right", "player", "player_speed", "direction", "action", "animation_type" },
+	pool = { "facing_right", "player", "player_speed", "direction", "action", "animation_type", "aiming", "position" },
 })
 
 function PlayerMovementSystem:update(dt)
@@ -21,7 +21,10 @@ function PlayerMovementSystem:update(dt)
 		direction.x = direction.x + 1
 	end
 
+	local mouse_position_raw = Vector(love.mouse.getX(), love.mouse.getY())
+
 	for _, e in ipairs(self.pool) do
+		e.aiming.vector = (mouse_position_raw - e.position.vector).normalized
 		if direction.length > 0 and e.action.value == "idle" then
 			e.action.value = "walking"
 			e.animation_type.value = 2

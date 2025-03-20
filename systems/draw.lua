@@ -1,4 +1,5 @@
 local Concord = require("libraries.Concord.concord")
+local Vector = require("libraries.brinevector.brinevector")
 
 local DrawSystem = Concord.system({
 	pool = {
@@ -10,6 +11,7 @@ local DrawSystem = Concord.system({
 		"animation_timer",
 		"sprite_scale",
 		"facing_right",
+		-- "aiming",
 	},
 })
 
@@ -27,6 +29,21 @@ function DrawSystem:draw()
 		local sprite = sprites.quads[animation_type][sprite_select]
 
 		love.graphics.circle("line", e.position.vector.x, e.position.vector.y, 64)
+
+		-- local arrow_end = e.position.vector + e.aiming.vector * 100
+		-- local arrowHeadSize = 10
+		-- local perp = Vector(-e.aiming.vector.y, e.aiming.vector.x)
+		--
+		-- love.graphics.draw(
+		-- 	sprites.sprite_sheet,
+		-- 	sprite,
+		-- 	arrow_end.x,
+		-- 	arrow_end.y,
+		-- 	arrow_end.x - e.aiming.vector.x * arrowHeadSize + perp.x * arrowHeadSize / 2,
+		-- 	arrow_end.y - e.aiming.vector.y * arrowHeadSize + perp.y * arrowHeadSize / 2,
+		-- 	arrow_end.x - e.aiming.vector.x * arrowHeadSize - perp.x * arrowHeadSize / 2,
+		-- 	arrow_end.y - e.aiming.vector.y * arrowHeadSize - perp.y * arrowHeadSize / 2
+		-- )
 
 		love.graphics.draw(
 			sprites.sprite_sheet,

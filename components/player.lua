@@ -5,4 +5,4 @@ Concord.component("player")
 Concord.component("player_speed", function(c, speed)
 	c.value = speed or 0
 end)
-
+Concord.component("player_hand")

@@ -17,4 +17,6 @@ end)
 Concord.component("action", function(c, action)
 	c.value = "idle"
 end)
-
+Concord.component("aiming", function(c, aiming)
+	c.vector = aiming or Vector(0, 0)
+end)
